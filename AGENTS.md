@@ -80,7 +80,7 @@ flowchart LR
 ## Build, test, run
 
 ```bash
-export JAVA_HOME=/path/to/jdk-17-or-21        # JDK 17–21; JDK 27 breaks AGP 9.4 (verified on 21)
+export JAVA_HOME=/path/to/jdk-21              # 17 and 21 are supported by AGP 9.4; only 21 was tested
 export ANDROID_HOME=/path/to/Android/Sdk
 ./gradlew testDebugUnitTest lintDebug assembleDebug   # ~15 s warm, first build compiles llama.cpp
 ./gradlew assembleRelease                             # R8; unsigned
@@ -106,7 +106,7 @@ arm64-v8a and x86_64, the latter so emulators work.
 
 | Symptom | Cause |
 |---|---|
-| Gradle/AGP fails at startup | `JAVA_HOME` points at JDK 27; use 21 |
+| Gradle/AGP fails at startup | `JAVA_HOME` points at a JDK newer than 21; set it to 21 |
 | llama.cpp compile error "cannot use try with exceptions disabled" | `-fno-exceptions` leaked onto third-party code; it belongs only on the bridge target |
 | French UI still English | `localeFilters` in `app/build.gradle.kts` must include `"fr"`; also `android:localeConfig` enables per-app language |
 | "Configuration cache problems … script object references" | don't capture script values in task actions; `fetchModel` delegates to a shell script |

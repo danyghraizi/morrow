@@ -16,7 +16,7 @@ Anything not listed here is unverified.
 
 | Metric | Galaxy S21 FE (arm64) | Emulator (x86_64) |
 |---|---|---|
-| Model load (first use) | ≲ 1 s | ~0.6 s |
+| Model load (first use) | ~1.2 s (derived: 3.1 s cold − 1.93 s warm) | not separated |
 | Prefill, ~191 tokens | 565–868 ms | 1.6–2.5 s |
 | Decode, ~21 tokens | 1.36 s (≈15.5 tok/s) | 3.5–4.8 s |
 | Whole request, warm | 1.93 s | 5.2–7.3 s |
