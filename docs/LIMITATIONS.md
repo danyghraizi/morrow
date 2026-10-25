@@ -27,7 +27,7 @@ by user value. Public-facing summary lives in `README.md` → "Where it breaks".
 
 ## Explicit non-goals
 
-- Cloud models, accounts, sync, analytics, telemetry — the app declares no `INTERNET` permission and
+- Cloud models, accounts, sync, analytics, telemetry: the app declares no `INTERNET` permission and
   that is a feature, not an oversight.
 - Free-form conversation quality. The model is a 270 M function-caller; the product is the rules.
 - Replacing the phone's calendar app: Morrow writes through `CalendarProvider` and mirrors read-only.

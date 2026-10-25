@@ -14,7 +14,7 @@ data class CalendarInfo(val id: Long, val name: String, val account: String, val
 
 /**
  * Writes events into whichever system calendar the user picked, so they show up
- * in Google Calendar, Etar, Samsung Calendar — anything that reads the provider.
+ * in Google Calendar, Etar, Samsung Calendar; anything that reads the provider.
  * It never creates its own account and never touches events it did not write.
  */
 class CalendarWriter(private val context: Context) {

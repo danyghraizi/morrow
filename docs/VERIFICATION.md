@@ -20,10 +20,10 @@ Anything not listed here is unverified.
 | Prefill, ~191 tokens | 565–868 ms | 1.6–2.5 s |
 | Decode, ~21 tokens | 1.36 s (≈15.5 tok/s) | 3.5–4.8 s |
 | Whole request, warm | 1.93 s | 5.2–7.3 s |
-| Tap → reply, cold (incl. load) | 3.1 s | — |
+| Tap → reply, cold (incl. load) | 3.1 s | not measured |
 | PSS with model resident | 477 MB (incl. 278 MB mapped) | ~440 MB |
 | Rules-only request | ~1 ms | ~1 ms |
-| 303 MB APK over USB | ~14 s | — |
+| 303 MB APK over USB | ~14 s | n/a |
 
 Memory bound that made this viable: `n_outputs_max = 1` shrank the logits buffer from 523 MiB to
 ~40 MiB for a 262k vocabulary (`llm_bridge.cpp`).
@@ -59,7 +59,7 @@ GBNF, and the outputs parsed with `CallParser`. Results that shaped the design:
 | 4 free tools | 9/24 correct intents, 13/24 with few-shot |
 | 1 tool with `kind` enum | 11/19, never chose `event` |
 | 1 tool, kind forced by host rules | 14/14 parseable, correct kind |
-| Agenda context in the user turn | model answered with the first open task — harmful |
+| Agenda context in the user turn | model answered with the first open task; harmful |
 
 To re-run this validation after changing the prompt: regenerate the goldens, run the GGUF with
 `llama-cli`/`llama-server` using those exact strings and grammar, confirm every output parses and the
@@ -69,7 +69,7 @@ kind is what the host decided, then update this table.
 
 - A **Google-account** calendar (the test phone has a Samsung account). Same provider rows, but not
   exercised.
-- **Reboot** resync (`BootReceiver`) — implemented, never tested on hardware.
+- **Reboot** resync (`BootReceiver`): implemented but never tested on hardware.
 - Android **8–14** (minSdk 26); only Android 16 was available.
 - Long-term **One UI sleeping-apps** behaviour beyond the single screen-off alarm test.
 - TalkBack / accessibility pass.

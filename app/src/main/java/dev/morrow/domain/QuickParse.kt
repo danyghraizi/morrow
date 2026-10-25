@@ -43,7 +43,7 @@ object QuickParse {
             "checked off|archive|cross off|fini avec|fini|termine|terminee|j'ai fini|j ai fini|" +
             "c'est fait|cest fait|fait|coche|valide|marque)\\b"
     )
-    /** "j'ai déjà payé le loyer", "i already paid the rent" — a done thing, not a new one. */
+    /** "j'ai déjà payé le loyer", "i already paid the rent": a done thing, not a new one. */
     private val ALREADY_DONE = Regex(
         """^j\s*'?\s*ai\s+deja\s+(?:paye|fini|fait|appele|envoye|achete|pris|vu|reserve|termine|regle|rendu)\s+(.+)$""" +
             """|^i\s+(?:already\s+)?(?:paid|finished|sent|called|booked|did|bought|picked)\s+(.+)$"""

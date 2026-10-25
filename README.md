@@ -2,7 +2,7 @@
 
 Your day, kept on this phone.
 
-Morrow is a small Android app that turns what you say into tasks, calendar events and reminders —
+Morrow is a small Android app that turns what you say into tasks, calendar events and reminders,
 using a **270M-parameter model that ships inside the APK**. No account, no API key, no network
 permission. You install it and it works.
 
@@ -34,7 +34,7 @@ surface instead of neon glassmorphism.
 
 ## Why this design
 
-The interesting problem is not "can a phone run an LLM" — it is "which parts of an assistant should
+The interesting problem is not "can a phone run an LLM"; it is "which parts of an assistant should
 not be an LLM at all".
 
 **A 270M model cannot do calendar arithmetic, and should not be asked to.** It happily emitted
@@ -55,7 +55,7 @@ tools it was right 9–13 times out of 24. So:
 
 The model's whole job is: *sentence → `save(kind, text)` or `reply(text)`*, in its own native
 function-call syntax, constrained by a GBNF grammar. When the rules already know the kind, the
-grammar is narrowed so only that alternative is reachable — the model literally cannot drift.
+grammar is narrowed so only that alternative is reachable: the model literally cannot drift.
 
 ### Measured evidence for that split
 
@@ -64,7 +64,7 @@ Run against the bundled GGUF with `llama.cpp` (greedy, grammar-constrained):
 | Prompt shape | Result |
 |---|---|
 | 4 free tools (add_task / add_event / complete / remember / answer) | 9/24 intent accuracy, 13/24 with few-shot |
-| 1 tool with a `kind` enum | 11/19 — and it never once picked `event` |
+| 1 tool with a `kind` enum | 11/19, and it never once picked `event` |
 | 1 tool, kind forced by rules + grammar | **14/14 parseable**, correct kind, clean titles |
 | Injecting agenda context into the user turn | actively harmful: the model answered with the first open task |
 
@@ -90,13 +90,13 @@ flowchart TD
     I --> UI[Compose UI]
 ```
 
-* **`domain/`** — pure Kotlin, no Android imports: `When` (time), `Recurrence` (repetition),
+* **`domain/`**: pure Kotlin, no Android imports. `When` (time), `Recurrence` (repetition),
   `QuickParse` (routing), `Insights`, `Assistant` (orchestration), `Copy` (EN/FR sentences), `Fmt`.
   Everything here is unit-tested on the JVM.
-* **`llm/`** — `Llama` (JNI surface), `LlamaEngine` (load/unload policy), `FunctionGemma`
+* **`llm/`**: `Llama` (JNI surface), `LlamaEngine` (load/unload policy), `FunctionGemma`
   (prompt + grammar), `CallParser` (tolerant parser).
-* **`data/`** — one SQLite helper, one repository, observable `Snapshot`, `Settings`.
-* **`notify/`**, **`calendar/`**, **`model/`**, **`ui/`** — thin, single-purpose.
+* **`data/`**: one SQLite helper, one repository, observable `Snapshot`, `Settings`.
+* **`notify/`**, **`calendar/`**, **`model/`**, **`ui/`**: thin, single-purpose.
 * No Hilt, no Room, no navigation library, no annotation processors: the graph is
   [eight constructor calls](app/src/main/java/dev/morrow/MorrowApp.kt), the database is three
   tables, and navigation is one `enum`.
@@ -107,7 +107,7 @@ flowchart TD
 
 | | |
 |---|---|
-| Model | `FunctionGemma 270M IT` — a Gemma 3 270M fine-tuned for function calling |
+| Model | `FunctionGemma 270M IT`: a Gemma 3 270M fine-tuned for function calling |
 | Quant | Q8_0 · 268M params · **291,557,792 bytes (278 MiB)** |
 | Source | `ggml-org/functiongemma-270m-it-GGUF` (sha256 `83940d4d…5270`) |
 | Runtime | `llama.cpp` **b11879**, arm64 + x86_64, CPU only, built from a checksum-pinned tarball |
@@ -122,19 +122,19 @@ and use it immediately".
 
 ### What it costs
 
-Measured on a **Samsung Galaxy S21 FE (SM-G990B), Android 16, arm64-v8a** — the build actually ships
-for phones — and on the x86_64 emulator used for UI testing (4 vCPU, KVM, **no AVX dispatch**; the
-x86 build is deliberately baseline so it runs everywhere):
+Measured on a **Samsung Galaxy S21 FE (SM-G990B), Android 16, arm64-v8a** (the build that ships to
+phones) and on the x86_64 emulator used for UI testing (4 vCPU, KVM, **no AVX dispatch**; the x86
+build is deliberately baseline so it runs everywhere):
 
 | Metric | Galaxy S21 FE (arm64) | Emulator (x86_64) |
 |---|---|---|
 | Prefill, ~191 tokens | **565 ms** (338 tok/s) | 1.6–2.5 s |
 | Decode, ~21 tokens | **1.36 s** (≈15.5 tok/s) | 3.5–4.8 s |
 | Whole model request (warm) | **1.93 s** | 5.2–7.3 s |
-| Tap → reply, cold (incl. load) | **3.1 s** | — |
+| Tap → reply, cold (incl. load) | **3.1 s** | not measured |
 | PSS with model resident | **477 MB** (incl. 278 MB mapped) | ~440 MB |
 | Rules-only request | ~1 ms | ~1 ms |
-| 303 MB APK over USB | ~14 s | — |
+| 303 MB APK over USB | ~14 s | n/a |
 
 The earlier emulator-only table for the release build:
 
@@ -145,7 +145,7 @@ The earlier emulator-only table for the release build:
 | Decode, 21–23 tokens | 4.8 s | 3.5 s |
 | Whole model request | 7.3 s | 5.2–5.8 s |
 | PSS with model resident | ~440 MB (incl. 278 MB mapped weights) | same |
-| Rules-only request | — | ~1 ms, no model |
+| Rules-only request | ~1 ms | ~1 ms, no model |
 
 That is 2.7–3.8× faster than the emulator, in line with the estimate that was written before
 hardware was available. The output cap (64 tokens) and the rules-first split are what actually keep
@@ -154,10 +154,10 @@ the cost bounded: most interactions never load the model at all.
 ### Memory / battery policy
 
 1. Nothing runs at boot. The model loads on first *model* request, not at launch.
-2. Unloads after 90 s idle, on `ON_STOP`, and on `onLowMemory()` — the `mmap` pages go back to the
+2. Unloads after 90 s idle, on `ON_STOP`, and on `onLowMemory()`; the `mmap` pages go back to the
    kernel immediately.
 3. `n_outputs_max = 1` keeps the logits buffer at one row (1 MiB instead of 0.5 GiB for a
-   262k vocabulary — measured 523 MiB → ~40 MiB compute buffer).
+   262k vocabulary, measured 523 MiB → ~40 MiB compute buffer).
 4. Greedy + grammar: no sampling loops, no retries on malformed output.
 5. Decode uses 2 threads (memory-bound), prefill bursts to 4 (compute-bound), capped at 4.
 6. Reminders are `setExactAndAllowWhileIdle` (or inexact fallback). No foreground service, no
@@ -181,8 +181,8 @@ the cost bounded: most interactions never load the model at all.
 
 Each occurrence is a **real row**: 8 up front, topped up to a 21-day horizon on launch (capped at 14),
 so one alarm per occurrence, completion per occurrence and deletion per occurrence all work with no
-special cases. The first occurrence is aligned to the rule — "tous les lundis" said on a Sunday starts
-on Monday, not tonight — and top-up is idempotent, so relaunching never duplicates a day.
+special cases. The first occurrence is aligned to the rule ("tous les lundis" said on a Sunday starts
+on Monday, not tonight), and top-up is idempotent, so relaunching never duplicates a day.
 
 Anything else ("every 3rd tuesday", end dates) is saved once and you are told it cannot repeat that
 pattern. Repeating items stay local; they are not written into the system calendar.
@@ -190,20 +190,20 @@ pattern. Repeating items stay local; they are not written into the system calend
 ## Where it breaks (measured on the phone)
 
 Each row below was typed into the installed app on the Galaxy S21 FE and the result read back from its
-database — not from memory of the code.
+database, not from memory of the code.
 
 | Input | What the app actually did |
 |---|---|
 | `pay the rent friday at 5pm` | task, Fri 17:00, alarm at 17:00 |
 | `pay the rent and call the dentist tomorrow` | **two** items ("Pay the rent" anytime, "Call the dentist" tomorrow 09:00), no model call |
 | `payer le loyer et appeler le dentiste demain` | same, in French |
-| `call the plumber in 3 days at 9am` | Wed 09:00 — the offset date **and** the explicit clock |
+| `call the plumber in 3 days at 9am` | Wed 09:00; the offset date **and** the explicit clock |
 | `in 3 days at 9am` (no subject) | asks "What should I call the thing at Wed 28 Oct · 09:00?" instead of inventing a title |
 | `dinner with Julia next tuesday at 8 for 2 hours` | event, 20:00–22:00 |
 | `water the plants every day at 8am` | 14 occurrences (8 up front, topped up, capped), all distinct starts |
 | `every 3rd tuesday at 10` | ⚠️ saved as a one-off **and told you** it cannot repeat that pattern |
 | `j ai deja paye le loyer` / `i already paid the rent` | ticks off the *closest* matching item, not the longest one |
-| `what is on my plate tomorrow` / `mon programme demain` | "Tomorrow: 3 things — …" / "Demain : 3 choses — …" |
+| `what is on my plate tomorrow` / `mon programme demain` | "Tomorrow: 3 things" / "Demain : 3 choses", then the list |
 | `I need to remember to pick up the prescription … before they close at 7 on friday` | one task, Fri 19:00, title trimmed to "Pick up the prescription at the pharmacy before they close" |
 | `cancel my gym session` | ⚠️ refused with "I cannot cancel or delete yet…" rather than saving junk |
 | `half past five` | ⚠️ no idiom parsing; the model saves it as an anytime task with that text |
@@ -227,7 +227,7 @@ and may answer in English; the rules never do.
 ## Calendar, in both directions
 
 Morrow talks to Android's `CalendarProvider` and nothing else. That is the single integration point
-Google Calendar, Samsung Calendar, Etar and anything else on the phone already share — there is no
+Google Calendar, Samsung Calendar, Etar and anything else on the phone already share; there is no
 Google API client, no OAuth, no account picker, no network. Whichever calendars the phone has
 (`you@gmail.com`, Samsung's local "My calendar", Exchange, DAVx5…) appear in Settings, whatever
 their account type.
@@ -242,16 +242,16 @@ calendar`), and included in "next up", the agenda answer and free-slot suggestio
 
 Rules that keep it honest:
 * rows Morrow wrote are matched by `calendarEventId` and not shown twice;
-* mirrored rows are never written to the database and cannot be ticked off or moved from Morrow —
+* mirrored rows are never written to the database and cannot be ticked off or moved from Morrow;
   tapping one opens the owning calendar app at that event;
 * the switch *Show calendar in Today* hides them and stops the queries (default on);
-* refresh happens on resume and every five minutes while visible — no background sync, no wakelocks;
+* refresh happens on resume and every five minutes while visible; no background sync, no wakelocks;
 * recurring series are expanded by the provider, so each occurrence appears separately (Morrow does
   not create recurring events itself).
 
 ## Privacy
 
-* No `INTERNET` permission is declared — verified with `aapt2 dump permissions` on the built APK.
+* No `INTERNET` permission is declared; verified with `aapt2 dump permissions` on the built APK.
   Nothing you type *can* leave the device.
 * Backups are disabled (`allowBackup=false`) and the model lives in `noBackupFilesDir`.
 * Chat history is capped at 60 turns and can be cleared; remembered facts are listed and deletable.
@@ -294,8 +294,8 @@ native call format; the goldens in `app/src/test/resources` are what the model w
 ## Verification performed
 
 Everything claimed here was exercised on a **Galaxy S21 FE (Android 16, arm64)** and an API 36
-x86_64 emulator. The full record — environments, measurements, which flows were run, and what is
-*not* verified — is in [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
+x86_64 emulator. The full record, environments, measurements, which flows were run, and what is
+*not* verified, is in [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
 
 * 75 JVM tests green, `lintDebug` clean, debug and R8 release APKs built.
 * Model request on the phone: **1.93 s** warm (prefill 565 ms + decode 1.36 s), **3.1 s** cold;
@@ -308,7 +308,7 @@ x86_64 emulator. The full record — environments, measurements, which flows wer
 
 ## Known limits
 
-* English and French only, typed input only — there is no microphone, wake word or TTS.
+* English and French only, typed input only; there is no microphone, wake word or TTS.
 * At most **two** actions per sentence. No multi-step planning ("plan my weekend"), no third clause.
 * No conversational memory: "move it to tomorrow" needs the item's name repeated.
 * Time idioms are not parsed ("half past five", "quarter to", "end of month"); recurrence is limited
@@ -326,14 +326,14 @@ The backlog with file pointers and acceptance criteria is [`docs/LIMITATIONS.md`
 
 | | |
 |---|---|
-| [`AGENTS.md`](AGENTS.md) | where everything lives, invariants, build recipes and traps — start here to change code |
+| [`AGENTS.md`](AGENTS.md) | where everything lives, invariants, build recipes and traps; start here to change code |
 | [`docs/LIMITATIONS.md`](docs/LIMITATIONS.md) | measured gaps, with file pointers and acceptance criteria |
 | [`docs/VERIFICATION.md`](docs/VERIFICATION.md) | environments, measurements, what is and is not verified |
 | [`THIRD_PARTY.md`](THIRD_PARTY.md) | licences of the model, llama.cpp and AndroidX |
 
 ## Licence
 
-Application code: **MIT** — see [`LICENSE`](LICENSE).
+Application code: **MIT**; see [`LICENSE`](LICENSE).
 
 The bundled model is **not** MIT. FunctionGemma is distributed under the
 [Gemma Terms of Use](https://ai.google.dev/gemma/terms); the GGUF is fetched at build time rather than

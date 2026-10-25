@@ -38,7 +38,7 @@ class Assistant(
 ) {
     data class Reply(
         val text: String,
-        /** "rules", "model", "model-offline" or "app" — shown in the UI for honesty. */
+        /** "rules", "model", "model-offline" or "app"; shown in the UI for honesty. */
         val engine: String,
         val item: Item? = null,
         /** True when the reply changed stored data, so the UI may offer Undo. */
@@ -294,7 +294,7 @@ class Assistant(
 
     /**
      * Picks the item the user most likely meant. Exact titles beat prefixes, which
-     * beat substrings, which beat token overlap — and a shorter title wins ties, so
+     * beat substrings, which beat token overlap, and a shorter title wins ties, so
      * "done with the rent" prefers "Pay the rent" over "Pay the rent and call Bob".
      */
     /** Rejects model output that drifts away from what the user said. */

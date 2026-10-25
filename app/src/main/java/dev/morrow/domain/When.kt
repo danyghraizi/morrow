@@ -128,7 +128,7 @@ object When {
             for (index in range) search.setCharAt(index, ' ')
         }
 
-        // 1. "in 20 minutes" / "dans 20 minutes" — keeps an explicit clock below
+        // 1. "in 20 minutes" / "dans 20 minutes": keeps an explicit clock below
         var anchor: ZonedDateTime? = null
         OFFSET_RE.find(search)?.let { m ->
             val n = wordToNumber(m.groupValues[1]) ?: 1
@@ -327,7 +327,7 @@ object When {
     /** Removes parsed time words from a sentence and tidies it into a title. */
     fun cleanTitle(raw: String, spec: TimeSpec): String {
         // Spans can nest ("every monday" contains "monday"), so merge before
-        // deleting — otherwise the second delete eats the wrong characters.
+        // deleting, otherwise the second delete eats the wrong characters.
         val merged = mutableListOf<IntRange>()
         for (span in spec.spans.sortedBy { it.first }) {
             val last = merged.lastOrNull()
@@ -353,7 +353,7 @@ object When {
                 if (s.length < prefix.length) continue
                 if (!s.regionMatches(0, prefix, 0, prefix.length, ignoreCase = true)) continue
                 if (s.length > prefix.length && s[prefix.length].isLetterOrDigit()) continue
-                s = s.substring(prefix.length).trimStart(' ', ',', ';', ':', '-', '–', '—', '\'')
+                s = s.substring(prefix.length).trimStart(' ', ',', ';', ':', '-', '–', '\u2014', '\'')
                 changed = true
             }
         }
@@ -367,7 +367,7 @@ object When {
                 folded = fold(s)
             }
         }
-        s = s.trim(' ', ',', ';', ':', '.', '-', '–', '—', '\'')
+        s = s.trim(' ', ',', ';', ':', '.', '-', '–', '\u2014', '\'')
         if (s.isEmpty()) return s
         return s.replaceFirstChar { it.titlecase(Locale.getDefault()) }
     }

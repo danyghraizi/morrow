@@ -1,4 +1,4 @@
-# Agent notes — read this first
+# Agent notes: read this first
 
 You should not need to read the whole codebase. It is ~5.9k lines of Kotlin/C++; this file tells you
 which ~300 lines matter for a given task. Public documentation is `README.md`; the backlog of known
@@ -6,7 +6,7 @@ gaps is `docs/LIMITATIONS.md`; measured evidence is `docs/VERIFICATION.md`.
 
 ## What this is
 
-Morrow — an offline Android assistant. A typed English or French sentence becomes a task or calendar
+Morrow: an offline Android assistant. A typed English or French sentence becomes a task or calendar
 event, with a reminder; a bundled 270 M model handles sentences the rules cannot structure. There is
 no `INTERNET` permission and no third-party SDK.
 
@@ -37,10 +37,10 @@ no `INTERNET` permission and no third-party SDK.
 Tests are the specification for the pure logic: `WhenTest`, `QuickParseTest`, `RecurrenceTest`,
 `InsightsTest`, `CalendarFeedTest`, `FunctionGemmaTest`, `ModelPackInfoTest` (75 tests).
 
-## Invariants — do not "improve" these casually
+## Invariants: do not "improve" these casually
 
 1. **Rules first, model last.** `QuickParse.route()` answers most sentences; `Assistant.think()` is the
-   fallback. Never route more traffic to the model to fix a phrasing — extend the rules.
+   fallback. Never route more traffic to the model to fix a phrasing; extend the rules.
 2. **The app decides task vs event; the grammar enforces it.** `FunctionGemma.grammar(forcedKind)`
    narrows output to one alternative. Keep it that way.
 3. **Never put user data in the model prompt.** Feeding agenda/memories into the prompt was measured
@@ -52,7 +52,7 @@ Tests are the specification for the pure logic: `WhenTest`, `QuickParseTest`, `R
 6. **Time is never computed by the model.** `When` resolves it; spans are 1:1 on an accent-folded copy,
    and `cleanTitle` merges overlapping spans before deleting.
 7. **Repetition is materialised.** Each occurrence is a real row (`rrule`, `series_id`). Top-up
-   (`Recurrence.missingOccurrences`) must stay bounded, idempotent and serialised — a race here
+   (`Recurrence.missingOccurrences`) must stay bounded, idempotent and serialised. A race here
    duplicated rows on hardware.
 8. **Schema changes need a migration.** Bump `Store.DATABASE_VERSION` and extend `onUpgrade`; the
    v1→v2 path rebuilds the table because `ALTER TABLE … DROP COLUMN` needs Android 14.
@@ -110,16 +110,16 @@ arm64-v8a and x86_64, the latter so emulators work.
 | llama.cpp compile error "cannot use try with exceptions disabled" | `-fno-exceptions` leaked onto third-party code; it belongs only on the bridge target |
 | French UI still English | `localeFilters` in `app/build.gradle.kts` must include `"fr"`; also `android:localeConfig` enables per-app language |
 | "Configuration cache problems … script object references" | don't capture script values in task actions; `fetchModel` delegates to a shell script |
-| Calendar read returns 0 events but the provider has rows | `Instances` has no `status` column — asking for it throws and `runCatching` hides it |
+| Calendar read returns 0 events but the provider has rows | `Instances` has no `status` column; asking for it throws and `runCatching` hides it |
 | Tapping a mirrored event does nothing | missing `<queries>` for the calendar `VIEW` intent (Android 11+ package visibility) |
-| `adb shell input text` sends nothing | apostrophes/quotes break the device shell — type accent/apostrophe-free phrases |
+| `adb shell input text` sends nothing | apostrophes/quotes break the device shell; type accent/apostrophe-free phrases |
 | Old reminders keep firing after `pm clear` | alarms outlive data; uninstall to clear them |
 | UI automation taps nothing | keyboard shifts the nav bar / row is off-screen; hide the IME (`keyevent 4`) and prefer the last matching node |
 
 ## Definition of done
 
 1. `./gradlew testDebugUnitTest lintDebug assembleRelease` green.
-2. For behaviour changes, install and prove it from the DB or a UI dump — not by re-reading the code.
+2. For behaviour changes, install and prove it from the DB or a UI dump, not by re-reading the code.
 3. Update `README.md` (capabilities/limits), `docs/LIMITATIONS.md` (if a limit changed) and add a
    `CHANGELOG.md` entry.
 4. If you touch the prompt or grammar, the goldens in `app/src/test/resources/` must be regenerated

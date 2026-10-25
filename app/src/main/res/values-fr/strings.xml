@@ -7,7 +7,7 @@
     <string name="notif_snooze">Dans une heure</string>
 
     <string name="setup_title">Votre journée,\ngardée sur ce téléphone.</string>
-    <string name="setup_body">Morrow transforme ce que vous dites en tâches, rendez-vous et rappels — avec un modèle de 270M qui tourne sur votre téléphone. Sans compte, sans accès internet.</string>
+    <string name="setup_body">Morrow transforme ce que vous dites en tâches, rendez-vous et rappels, avec un modèle de 270M qui tourne sur votre téléphone. Sans compte, sans accès internet.</string>
     <string name="setup_model_ready">Modèle prêt</string>
     <string name="setup_model_detail">%1$s · %2$d Mo</string>
     <string name="setup_unpacking">Décompression du modèle</string>
@@ -86,8 +86,8 @@
     <string name="settings_on_time">à l\'heure</string>
     <string name="settings_minutes">%1$d min</string>
     <string name="settings_exact">Alarmes exactes</string>
-    <string name="settings_exact_ok">Autorisées — les rappels tombent à la minute</string>
-    <string name="settings_exact_no">Non autorisées — Android peut retarder les rappels</string>
+    <string name="settings_exact_ok">Autorisées : les rappels tombent à la minute</string>
+    <string name="settings_exact_no">Non autorisées : Android peut retarder les rappels</string>
     <string name="action_allow">Autoriser</string>
     <string name="section_remembered">Mémorisé</string>
     <string name="settings_nothing_yet">Rien pour l\'instant</string>

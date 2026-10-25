@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0 — 2026-10-25
+## 1.2.0 (2026-10-25)
 
 Found by a deliberate limits battery on a Galaxy S21 FE.
 
@@ -20,13 +20,13 @@ Found by a deliberate limits battery on a Galaxy S21 FE.
   own phrasing is used. Short verb phrases ("pay the rent") skip the model entirely.
 - Item matching ranks exact > prefix > substring > token overlap, so "done with the rent" picks the
   closest item rather than the longest one.
-- Repeating-series top-up is serialised and never re-adds an occurrence whose start already exists —
-  a race between app start and the boot receiver was duplicating rows on hardware.
+- Repeating-series top-up is serialised and never re-adds an occurrence whose start already exists.
+  A race between app start and the boot receiver was duplicating rows on hardware.
 - The Undo snackbar action is localised (it was hardcoded English).
 - Per-app language support (`android:localeConfig`, en/fr), so French can be chosen without changing
   the phone's language.
 
-## 1.1.0 — 2026-10-25
+## 1.1.0 (2026-10-25)
 
 **French**
 - Full French interface (`values-fr/`) plus a bilingual `Copy` layer for every sentence the app
@@ -60,9 +60,9 @@ Found by a deliberate limits battery on a Galaxy S21 FE.
 - 3-letter French day names collided with ordinary words and names ("Sam" → samedi).
 - App-specific locale filtering stripped `values-fr` from the APK.
 - Calendar feed stayed stale after creating an event (refresh was only on resume).
-- "1 events read from the phone" — the count is now pluralised.
+- "1 events read from the phone": the count is now pluralised.
 
-## 1.0.0 — 2026-10-25
+## 1.0.0 (2026-10-25)
 
 First working version: install and use, no download step, no account.
 
@@ -82,7 +82,7 @@ First working version: install and use, no download step, no account.
 - "Anytime" tasks, calendar events with durations, one-tap conversion between the two.
 - Reminders via exact-`AlarmManager` alarms with Done / In-an-hour notification actions that work
   without opening the app; rescheduled after reboot, timezone or clock changes.
-- System calendar integration both ways through `CalendarProvider` (Google, Samsung, Etar — any
+- System calendar integration both ways through `CalendarProvider` (Google, Samsung, Etar, any
   account type): events are written into the chosen calendar, and existing occurrences are read
   back into Today as read-only rows used by the agenda and free-slot suggestions. "Local only"
   remains the default for writes.

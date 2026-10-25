@@ -2,7 +2,7 @@
 
 The application code is MIT (see `LICENSE`). Everything below keeps its own licence and terms.
 
-## Bundled model — **not** MIT
+## Bundled model (not MIT)
 
 | | |
 |---|---|

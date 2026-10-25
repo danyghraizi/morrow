@@ -9,7 +9,7 @@ import java.time.format.TextStyle
 import java.util.Locale
 
 /**
- * Every sentence the app composes itself — replies, agenda summaries, insights,
+ * Every sentence the app composes itself: replies, agenda summaries, insights,
  * row labels. Kept as a small interface with two implementations so the domain
  * layer stays free of Android resources while still speaking both languages.
  *
@@ -137,7 +137,7 @@ internal object English : BaseCopy() {
     override fun eventLabel() = "event"
     override fun onDevice() = "on-device"
 
-    override fun addedTask(title: String, whenText: String) = "\"$title\" — $whenText. I will nudge you."
+    override fun addedTask(title: String, whenText: String) = "\"$title\": $whenText. I will nudge you."
     override fun addedAnytime(title: String) = "\"$title\" is in your anytime list."
     override fun addedEvent(title: String, whenText: String) = "Added \"$title\" for $whenText."
     override fun addedRepeating(title: String, whenText: String, repeat: String) =
@@ -154,30 +154,30 @@ internal object English : BaseCopy() {
 
     override fun helpText() = """
         I keep your day on this phone, offline.
-        • "pay the rent friday" — adds a task and nudges you
-        • "dentist tuesday at 3" — books a calendar event
-        • "gym every monday at 7" — repeats it weekly
-        • "done with the rent" — ticks it off
-        • "move the dentist to thursday" — reschedules
-        • "what's on my plate" — today at a glance
-        • "remember I hate mornings" — keeps a note
+        • "pay the rent friday" adds a task and nudges you
+        • "dentist tuesday at 3" books a calendar event
+        • "gym every monday at 7" repeats it weekly
+        • "done with the rent" ticks it off
+        • "move the dentist to thursday" reschedules
+        • "what's on my plate" today at a glance
+        • "remember I hate mornings" keeps a note
     """.trimIndent()
 
     override fun cannotRepeat() =
-        "I can repeat daily, on chosen weekdays, or monthly — that pattern was saved as a one-off."
+        "I can repeat daily, on chosen weekdays, or monthly. That pattern was saved as a one-off."
 
     override fun cannotCancel() =
         "I cannot cancel or delete yet. Open the item in Today and use Delete there."
 
     override fun agendaEmpty() = "Today is clear. Tell me what you need to do and I will hold on to it."
     override fun agendaOnDay(label: String, count: Int, list: String) =
-        "$label: $count ${if (count == 1) "thing" else "things"} — $list"
+        "$label: $count ${if (count == 1) "thing" else "things"}\n$list"
 
     override fun agendaNothingOnDay(label: String) = "$label: nothing scheduled."
     override fun agendaNothingToday() = "Nothing scheduled today"
     override fun agendaToday(count: Int, list: String) = "$count today: $list"
     override fun agendaSlipped(count: Int) =
-        "\n$count slipped past — say \"move it to today\" to pull them in."
+        "\n$count slipped past. Say \"move it to today\" to pull them in."
     override fun agendaAnytime(list: String) = "\nAnytime: $list"
     override fun agendaNextUp(minutes: Long, title: String) = "\nNext up in $minutes min: $title."
     override fun separator() = " · "
@@ -248,7 +248,7 @@ internal object French : BaseCopy() {
     override fun eventLabel() = "rendez-vous"
     override fun onDevice() = "sur l'appareil"
 
-    override fun addedTask(title: String, whenText: String) = "« $title » — $whenText. Je vous préviens."
+    override fun addedTask(title: String, whenText: String) = "« $title » : $whenText. Je vous préviens."
     override fun addedAnytime(title: String) = "« $title » est dans votre liste, sans date."
     override fun addedEvent(title: String, whenText: String) = "« $title » ajouté pour $whenText."
     override fun addedRepeating(title: String, whenText: String, repeat: String) =
@@ -265,17 +265,17 @@ internal object French : BaseCopy() {
 
     override fun helpText() = """
         Je garde votre journée sur ce téléphone, hors ligne.
-        • « payer le loyer vendredi » — ajoute une tâche et vous prévient
-        • « dentiste mardi à 15h » — crée un rendez-vous dans l'agenda
-        • « yoga tous les lundis à 19h » — répète chaque semaine
-        • « le loyer est fait » — coche la tâche
-        • « déplace le dentiste à jeudi » — reporte
-        • « qu'est-ce que j'ai aujourd'hui » — votre journée
-        • « retiens que je préfère le matin » — garde une note
+        • « payer le loyer vendredi » ajoute une tâche et vous prévient
+        • « dentiste mardi à 15h » crée un rendez-vous dans l'agenda
+        • « yoga tous les lundis à 19h » répète chaque semaine
+        • « le loyer est fait » coche la tâche
+        • « déplace le dentiste à jeudi » reporte
+        • « qu'est-ce que j'ai aujourd'hui » votre journée
+        • « retiens que je préfère le matin » garde une note
     """.trimIndent()
 
     override fun cannotRepeat() =
-        "Je sais répéter chaque jour, certains jours de la semaine, ou chaque mois — ce motif a été enregistré une seule fois."
+        "Je sais répéter chaque jour, certains jours de la semaine, ou chaque mois. Ce motif a été enregistré une seule fois."
 
     override fun cannotCancel() =
         "Je ne peux pas encore annuler ni supprimer. Ouvrez l'élément dans Aujourd'hui et utilisez Supprimer."
@@ -283,13 +283,13 @@ internal object French : BaseCopy() {
     override fun agendaEmpty() =
         "Rien de prévu aujourd'hui. Dites-moi ce que vous avez à faire et je le garde."
     override fun agendaOnDay(label: String, count: Int, list: String) =
-        "$label : $count ${if (count == 1) "chose" else "choses"} — $list"
+        "$label : $count ${if (count == 1) "chose" else "choses"}\n$list"
 
     override fun agendaNothingOnDay(label: String) = "$label : rien de prévu."
     override fun agendaNothingToday() = "Rien de prévu aujourd'hui"
     override fun agendaToday(count: Int, list: String) = "$count aujourd'hui : $list"
     override fun agendaSlipped(count: Int) =
-        "\n$count en retard — dites « déplace-les à aujourd'hui » pour les ramener."
+        "\n$count en retard. Dites « déplace-les à aujourd'hui » pour les ramener."
     override fun agendaAnytime(list: String) = "\nSans date : $list"
     override fun agendaNextUp(minutes: Long, title: String) = "\nProchain dans $minutes min : $title."
     override fun separator() = " · "

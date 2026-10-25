@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 import java.time.Instant
 import java.time.ZoneId
 
-/** One occurrence read from the system calendar (Google, Samsung, Etar — anything). */
+/** One occurrence read from the system calendar (Google, Samsung, Etar, anything). */
 data class ExternalEvent(
     val eventId: Long,
     val title: String,
