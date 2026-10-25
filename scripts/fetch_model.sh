@@ -9,6 +9,8 @@ SHA="${MORROW_MODEL_SHA:-83940d4dd9676710856f43523bed096164a595a96f6b34771610a03
 SIZE="${MORROW_MODEL_BYTES:-291557792}"
 
 STAMP="${MORROW_MODEL_STAMP:-$DEST.sha256.ok}"
+# The stamp can live under build/, which does not exist on a fresh clone.
+mkdir -p "$(dirname "$STAMP")"
 # Fast path: verified once, untouched since.
 if [[ -f "$DEST" && -f "$STAMP" && "$(stat -c %s "$DEST")" == "$SIZE" ]] &&
    [[ "$(stat -c %Y "$STAMP")" -ge "$(stat -c %Y "$DEST")" ]]; then
