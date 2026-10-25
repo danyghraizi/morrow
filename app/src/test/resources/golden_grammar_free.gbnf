@@ -1,0 +1,5 @@
+root ::= call
+call ::= "<start_function_call>call:save{kind:" kind ",text:" str "}" "<end_function_call>" | "<start_function_call>call:reply{text:" str "}" "<end_function_call>"
+kind ::= "<escape>task<escape>" | "<escape>event<escape>" | "<escape>note<escape>"
+str ::= "<escape>" body "<escape>"
+body ::= [^<]+

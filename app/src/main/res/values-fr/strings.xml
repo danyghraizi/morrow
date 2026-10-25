@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Morrow</string>
+    <string name="notif_channel">Rappels</string>
+    <string name="notif_channel_desc">Un seul rappel discret quand quelque chose est dû.</string>
+    <string name="notif_done">Fait</string>
+    <string name="notif_snooze">Dans une heure</string>
+
+    <string name="setup_title">Votre journée,\ngardée sur ce téléphone.</string>
+    <string name="setup_body">Morrow transforme ce que vous dites en tâches, rendez-vous et rappels — avec un modèle de 270M qui tourne sur votre téléphone. Sans compte, sans accès internet.</string>
+    <string name="setup_model_ready">Modèle prêt</string>
+    <string name="setup_model_detail">%1$s · %2$d Mo</string>
+    <string name="setup_unpacking">Décompression du modèle</string>
+    <string name="setup_unpacking_detail">%1$d%% · une seule fois</string>
+    <string name="setup_preparing">Préparation du modèle…</string>
+    <string name="setup_start">Commencer</string>
+    <string name="setup_footnote">Vous pouvez désactiver le modèle à tout moment ; les règles continuent de fonctionner.</string>
+    <string name="setup_failed">Impossible de préparer le modèle</string>
+    <string name="setup_retry">Réessayer</string>
+
+    <string name="today_none_left">Rien de prévu aujourd\'hui</string>
+    <plurals name="today_ahead">
+        <item quantity="one">%1$d chose à venir</item>
+        <item quantity="other">%1$d choses à venir</item>
+    </plurals>
+    <plurals name="today_slipped">
+        <item quantity="one">%1$d en retard</item>
+        <item quantity="other">%1$d en retard</item>
+    </plurals>
+    <plurals name="today_anytime">
+        <item quantity="one">%1$d sans date</item>
+        <item quantity="other">%1$d sans date</item>
+    </plurals>
+    <string name="today_next">SUIVANT</string>
+    <string name="action_done">Fait</string>
+    <string name="action_open">Ouvrir</string>
+    <string name="section_worth_doing">À faire maintenant</string>
+    <string name="action_do_it">Faire</string>
+    <string name="today_tell_me">Dites-moi ce que vous avez à faire…</string>
+    <string name="empty_title">Journée libre</string>
+    <string name="empty_body">Dites ce que vous avez à faire dans l\'onglet Demander : cela apparaîtra ici, avec un rappel au bon moment.</string>
+    <string name="section_slipped">En retard</string>
+    <string name="section_today">Aujourd\'hui</string>
+    <string name="section_tomorrow">Demain</string>
+    <string name="section_later">Plus tard</string>
+    <string name="section_anytime">Sans date</string>
+    <string name="section_done_today">Faits aujourd\'hui</string>
+
+    <string name="ask_title">Demandez, ou dites simplement</string>
+    <string name="ask_body">Tout ce que vous tapez est compris sur ce téléphone. Rien n\'est envoyé, et le modèle dort quand vous ne l\'utilisez pas.</string>
+    <string name="ask_thinking">Réflexion locale…</string>
+    <string name="ask_hint">Ajouter, déplacer ou demander…</string>
+    <string name="ask_chip_day">Ma journée</string>
+    <string name="ask_chip_suggest">Suggérer</string>
+    <string name="ask_send_day">qu\'est-ce que j\'ai aujourd\'hui</string>
+    <string name="ask_send_suggest">que dois-je faire</string>
+    <string name="ask_opener_1">Payer le loyer vendredi</string>
+    <string name="ask_opener_2">Dentiste mardi à 15h</string>
+    <string name="ask_opener_3">Yoga tous les lundis à 19h</string>
+    <string name="ask_opener_4">Qu\'est-ce que j\'ai aujourd\'hui ?</string>
+
+    <string name="settings_title">Réglages</string>
+    <string name="settings_subtitle">Tout se passe sur ce téléphone. Le modèle tourne ici.</string>
+    <string name="section_model">Le modèle</string>
+    <string name="settings_use_model">Utiliser le modèle</string>
+    <string name="settings_use_model_detail">Désactivé : règles seules, instantané, sans coût de batterie.</string>
+    <string name="settings_in_memory">En mémoire</string>
+    <string name="settings_memory_loading">Requête en cours</string>
+    <string name="settings_memory_loaded">Chargé</string>
+    <string name="settings_memory_latency">Chargé · dernière réponse %1$d ms</string>
+    <string name="settings_memory_unloaded">Déchargé (rechargé en moins d\'une seconde)</string>
+    <string name="settings_free">Libérer</string>
+    <string name="section_calendar">Agenda</string>
+    <string name="settings_write_events">Écrire les rendez-vous dans</string>
+    <string name="settings_write_events_detail">Les rendez-vous créés sont recopiés ici</string>
+    <string name="settings_calendar_permission">Autorisation d\'agenda requise</string>
+    <string name="settings_show_calendar">Afficher l\'agenda aujourd\'hui</string>
+    <plurals name="settings_show_calendar_detail">
+        <item quantity="one">%1$d événement lu sur le téléphone (lecture seule)</item>
+        <item quantity="other">%1$d événements lus sur le téléphone (lecture seule)</item>
+    </plurals>
+    <string name="settings_local_only">Local uniquement</string>
+    <string name="settings_local_only_detail">Morrow garde le rendez-vous pour lui</string>
+    <string name="section_reminders">Rappels</string>
+    <string name="settings_nudge_before">Prévenir avant les rendez-vous</string>
+    <string name="settings_on_time">à l\'heure</string>
+    <string name="settings_minutes">%1$d min</string>
+    <string name="settings_exact">Alarmes exactes</string>
+    <string name="settings_exact_ok">Autorisées — les rappels tombent à la minute</string>
+    <string name="settings_exact_no">Non autorisées — Android peut retarder les rappels</string>
+    <string name="action_allow">Autoriser</string>
+    <string name="section_remembered">Mémorisé</string>
+    <string name="settings_nothing_yet">Rien pour l\'instant</string>
+    <string name="settings_nothing_yet_detail">Dites « retiens que je préfère le matin » et cela reste ici, sur le téléphone.</string>
+    <string name="settings_chat_history">Historique</string>
+    <string name="settings_chat_history_detail">%1$d éléments · %2$d faits</string>
+    <string name="action_clear">Effacer</string>
+    <string name="action_forget">Oublier</string>
+    <string name="section_about">À propos</string>
+    <string name="settings_about_body">Un modèle local, un agenda, aucun compte. L\'application ne déclare aucune autorisation internet : rien de ce que vous tapez ne peut quitter l\'appareil.</string>
+    <string name="settings_about_model">Modèle : %1$s (%2$s), %3$s. Moteur : llama.cpp b11879, CPU arm64 uniquement.</string>
+    <string name="settings_show_welcome">Réafficher l\'écran d\'accueil</string>
+
+    <string name="sheet_mark_done">Marquer comme fait</string>
+    <string name="sheet_mark_undone">Marquer comme à faire</string>
+    <string name="sheet_move_tomorrow">Déplacer à demain 09:00</string>
+    <string name="sheet_move_monday">Déplacer à lundi prochain 09:00</string>
+    <string name="sheet_make_task">En faire une tâche</string>
+    <string name="sheet_make_event">En faire un rendez-vous</string>
+    <string name="sheet_add_calendar">Ajouter aussi à l\'agenda</string>
+    <string name="sheet_remove_calendar">Retirer de l\'agenda</string>
+    <string name="sheet_delete">Supprimer</string>
+    <string name="sheet_close">Fermer</string>
+    <string name="sheet_anytime">Sans date</string>
+    <string name="sheet_task">Tâche</string>
+    <string name="sheet_event">Rendez-vous</string>
+    <string name="engine_rules">règles locales</string>
+    <string name="engine_model">modèle local</string>
+    <string name="engine_off">modèle désactivé</string>
+    <string name="engine_app">app</string>
+    <string name="tab_today">Aujourd\'hui</string>
+    <string name="tab_ask">Demander</string>
+    <string name="tab_settings">Réglages</string>
+    <string name="action_undo">Annuler</string>
+</resources>

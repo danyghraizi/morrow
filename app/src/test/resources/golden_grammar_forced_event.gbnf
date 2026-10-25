@@ -1,0 +1,4 @@
+root ::= call
+call ::= "<start_function_call>call:save{kind:" "<escape>event<escape>" ",text:" str "}" "<end_function_call>"
+str ::= "<escape>" body "<escape>"
+body ::= [^<]+

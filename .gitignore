@@ -1,0 +1,24 @@
+# build output
+build/
+.gradle/
+.idea/
+.externalNativeBuild/
+.cxx/
+.kotlin/
+captures/
+*.iml
+
+# local machine config (sdk.dir etc.)
+local.properties
+
+# 278 MB model weights: fetched by ./gradlew fetchModel, never committed
+app/src/main/assets/models/*.gguf
+app/src/main/assets/models/*.part
+app/src/main/assets/models/*.sha256.ok
+
+# secrets / signing material
+*.keystore
+*.jks
+.env
+
+.DS_Store

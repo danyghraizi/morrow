@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Morrow</string>
+    <string name="notif_channel">Reminders</string>
+    <string name="notif_channel_desc">One quiet nudge when something is due.</string>
+    <string name="notif_done">Done</string>
+    <string name="notif_snooze">In an hour</string>
+
+    <!-- Setup -->
+    <string name="setup_title">Your day, kept\non this phone.</string>
+    <string name="setup_body">Morrow turns what you say into tasks, calendar events and gentle nudges — using a 270M model running on your phone. No account, no internet permission.</string>
+    <string name="setup_model_ready">Model ready</string>
+    <string name="setup_model_detail">%1$s · %2$d MB</string>
+    <string name="setup_unpacking">Unpacking the model once</string>
+    <string name="setup_unpacking_detail">%1$d%% · this happens a single time</string>
+    <string name="setup_preparing">Preparing the model…</string>
+    <string name="setup_start">Start</string>
+    <string name="setup_footnote">You can turn the model off at any time; the rules keep working.</string>
+    <string name="setup_failed">Could not prepare the model</string>
+    <string name="setup_retry">Try again</string>
+
+    <!-- Today -->
+    <string name="today_none_left">Nothing left today</string>
+    <plurals name="today_ahead">
+        <item quantity="one">%1$d thing ahead</item>
+        <item quantity="other">%1$d things ahead</item>
+    </plurals>
+    <plurals name="today_slipped">
+        <item quantity="one">%1$d slipped</item>
+        <item quantity="other">%1$d slipped</item>
+    </plurals>
+    <plurals name="today_anytime">
+        <item quantity="one">%1$d anytime</item>
+        <item quantity="other">%1$d anytime</item>
+    </plurals>
+    <string name="today_next">NEXT</string>
+    <string name="action_done">Done</string>
+    <string name="action_open">Open</string>
+    <string name="section_worth_doing">Worth doing</string>
+    <string name="action_do_it">Do it</string>
+    <string name="today_tell_me">Tell me what you have to do…</string>
+    <string name="empty_title">A clear day</string>
+    <string name="empty_body">Say what you need to do in the Ask tab and it lands here, with a nudge at the right time.</string>
+    <string name="section_slipped">Slipped</string>
+    <string name="section_today">Today</string>
+    <string name="section_tomorrow">Tomorrow</string>
+    <string name="section_later">Later</string>
+    <string name="section_anytime">Anytime</string>
+    <string name="section_done_today">Done today</string>
+
+    <!-- Ask -->
+    <string name="ask_title">Ask, or just tell me</string>
+    <string name="ask_body">Everything you type is understood on this phone. Nothing is uploaded, and the model sleeps when you are not using it.</string>
+    <string name="ask_thinking">Thinking locally…</string>
+    <string name="ask_hint">Add, reschedule or ask…</string>
+    <string name="ask_chip_day">My day</string>
+    <string name="ask_chip_suggest">Suggest</string>
+    <string name="ask_send_day">what is on my plate</string>
+    <string name="ask_send_suggest">what should i do now</string>
+    <string name="ask_opener_1">Pay the rent friday</string>
+    <string name="ask_opener_2">Dentist tuesday at 3pm</string>
+    <string name="ask_opener_3">Gym every monday at 7pm</string>
+    <string name="ask_opener_4">What\'s on my plate?</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_subtitle">Everything here is local. The model runs on this phone.</string>
+    <string name="section_model">The model</string>
+    <string name="settings_use_model">Use the model</string>
+    <string name="settings_use_model_detail">Off means rules-only: instant, no battery cost, simpler replies.</string>
+    <string name="settings_in_memory">In memory</string>
+    <string name="settings_memory_loading">Running a request</string>
+    <string name="settings_memory_loaded">Loaded</string>
+    <string name="settings_memory_latency">Loaded · last reply %1$d ms</string>
+    <string name="settings_memory_unloaded">Unloaded (it reloads in under a second)</string>
+    <string name="settings_free">Free</string>
+    <string name="section_calendar">Calendar</string>
+    <string name="settings_write_events">Write events to</string>
+    <string name="settings_write_events_detail">Events you create are mirrored here</string>
+    <string name="settings_calendar_permission">Needs calendar permission</string>
+    <string name="settings_show_calendar">Show calendar in Today</string>
+    <plurals name="settings_show_calendar_detail">
+        <item quantity="one">%1$d event read from the phone (read-only)</item>
+        <item quantity="other">%1$d events read from the phone (read-only)</item>
+    </plurals>
+    <string name="settings_local_only">Local only</string>
+    <string name="settings_local_only_detail">Morrow keeps the event to itself</string>
+    <string name="section_reminders">Reminders</string>
+    <string name="settings_nudge_before">Nudge before events</string>
+    <string name="settings_on_time">on time</string>
+    <string name="settings_minutes">%1$d min</string>
+    <string name="settings_exact">Exact alarms</string>
+    <string name="settings_exact_ok">Allowed — nudges land on the minute</string>
+    <string name="settings_exact_no">Not allowed — Android may delay nudges</string>
+    <string name="action_allow">Allow</string>
+    <string name="section_remembered">Remembered</string>
+    <string name="settings_nothing_yet">Nothing yet</string>
+    <string name="settings_nothing_yet_detail">Say \"remember I hate mornings\" and it stays here, on the phone.</string>
+    <string name="settings_chat_history">Chat history</string>
+    <string name="settings_chat_history_detail">%1$d items · %2$d done</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_forget">Forget</string>
+    <string name="section_about">About</string>
+    <string name="settings_about_body">One local model, one calendar, no account. The app declares no internet permission at all, so nothing you type can leave the device.</string>
+    <string name="settings_about_model">Model: %1$s (%2$s), %3$s. Runtime: llama.cpp b11879, arm64 CPU only.</string>
+    <string name="settings_show_welcome">Show the welcome screen again</string>
+
+    <!-- Item sheet -->
+    <string name="sheet_mark_done">Mark done</string>
+    <string name="sheet_mark_undone">Mark as not done</string>
+    <string name="sheet_move_tomorrow">Move to tomorrow 09:00</string>
+    <string name="sheet_move_monday">Move to next Monday 09:00</string>
+    <string name="sheet_make_task">Make it a task</string>
+    <string name="sheet_make_event">Make it a calendar event</string>
+    <string name="sheet_add_calendar">Also add to system calendar</string>
+    <string name="sheet_remove_calendar">Remove from system calendar</string>
+    <string name="sheet_delete">Delete</string>
+    <string name="sheet_close">Close</string>
+    <string name="sheet_anytime">Anytime</string>
+    <string name="sheet_task">Task</string>
+    <string name="sheet_event">Event</string>
+    <string name="engine_rules">on-device rules</string>
+    <string name="engine_model">on-device model</string>
+    <string name="engine_off">model off</string>
+    <string name="engine_app">app</string>
+    <string name="tab_today">Today</string>
+    <string name="tab_ask">Ask</string>
+    <string name="tab_settings">Settings</string>
+    <string name="action_undo">Undo</string>
+</resources>

@@ -1,0 +1,7 @@
+<start_of_turn>developer
+You are a model that can do function calling with the following functions<start_function_declaration>declaration:save
+{description:<escape>Stores one thing the user said.<escape>,parameters:{properties:{kind:{description:<escape>task for something to do, event for a meeting, note for a lasting fact.<escape>,enum:<escape>task<escape>,<escape>event<escape>,<escape>note<escape>,type:<escape>STRING<escape>},text:{description:<escape>The words of the user, with time words left out.<escape>,type:<escape>STRING<escape>}},required:[<escape>kind<escape>,<escape>text<escape>],type:<escape>OBJECT<escape>}}<end_function_declaration><start_function_declaration>declaration:reply
+{description:<escape>Answers the user in plain words.<escape>,parameters:{properties:{text:{description:<escape>A short answer.<escape>,type:<escape>STRING<escape>}},required:[<escape>text<escape>],type:<escape>OBJECT<escape>}}<end_function_declaration><end_of_turn>
+<start_of_turn>user
+dentist on friday at 3pm<end_of_turn>
+<start_of_turn>model

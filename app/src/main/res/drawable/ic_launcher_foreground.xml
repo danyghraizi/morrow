@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Open ring: the day, with a gap for what is still to come. -->
+    <path
+        android:pathData="M76.5,41 A26,26 0 1 1 29.6,45.1"
+        android:strokeColor="#FFF6EF"
+        android:strokeWidth="7"
+        android:strokeLineCap="round" />
+    <!-- The mark that closes the loop. -->
+    <path
+        android:pathData="M54,54 m-7,0 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0"
+        android:fillColor="#FFF6EF" />
+</vector>
